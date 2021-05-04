@@ -1,5 +1,6 @@
 venv/
 temp.mp3
 config.py
+lookup/people.json
 *.pyc
 .DS_STORE
