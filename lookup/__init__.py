@@ -2,6 +2,9 @@ import json
 from twitch.chat import Message
 import random
 import sys
+from log import get_logger
+
+l = get_logger(__name__)
 
 accents = [{'language': 'en', 'accent': 'com'},
            {'language': 'en', 'accent': 'com.au'},
@@ -14,11 +17,12 @@ accents = [{'language': 'en', 'accent': 'com'},
 
 
 def read_from_file(key):
+    l.debug('[read] {}'.format(key))
     with open('lookup/people.json', 'r') as f:
         data = json.loads(f.read())
         # fix existing voice that is only pitch
         if type(data.get(key)) == float:
-            print('normalising data for {}'.format(key))
+            l.warn('only found pitch data for {} - attempting to normalise'.format(key))
             new_data = random.choice(accents)
             new_data['pitch'] = data.get(key)
             write_to_file(key, new_data)
@@ -27,6 +31,7 @@ def read_from_file(key):
 
 
 def write_to_file(key, value):
+    l.debug('[write] {} <- {}'.format(key, value))
     with open('lookup/people.json', 'r') as f:
         existing_data = json.loads(f.read())
     existing_data[key] = value
@@ -40,6 +45,7 @@ def lookup(message: Message) -> float:
         return existing
     # at this point, no existing data
     # generate new pitch value
+    l.debug('[new viewer] {} - setting data'.format(message.sender))
     random_value = random.random()
     random_value = (int(random_value * 100)) / 100
     new_data = random.choice(accents)

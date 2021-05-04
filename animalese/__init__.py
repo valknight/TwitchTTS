@@ -7,6 +7,8 @@ def animalese(text: str, pitch: float):
 		pitch = "lowest"
 	elif pitch < 0.5:
 		pitch = "low"
+	elif pitch < 0.75:
+		pitch = "med"
 	else:
 		pitch = "high"
 	text = text.lower()
