@@ -1,0 +1,5 @@
+venv/
+temp.mp3
+config.py
+*.pyc
+.DS_STORE
