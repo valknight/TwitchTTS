@@ -1,0 +1,3 @@
+gTTS
+playsound
+twitch-python

@@ -1,0 +1,50 @@
+{
+    "cz4chu_adam": {
+        "pitch": 0.65,
+        "accent": "fr",
+        "language": "fr"
+    },
+    "vinvocci": {
+        "pitch": 0.95,
+        "accent": "co.uk",
+        "language": "en"
+    },
+    "nebularpunk": {
+        "language": "en",
+        "accent": "ca",
+        "pitch": 0.05
+    },
+    "branw3n": {
+        "pitch": 0.69,
+        "accent": "co.za",
+        "language": "en"
+    },
+    "vknilive": {
+        "language": "en",
+        "accent": "co.uk",
+        "pitch": 0.44,
+        "animalese": true
+    },
+    "keeleyy": {
+        "language": "fr",
+        "accent": "fr",
+        "pitch": 0.08
+    },
+    "mr_robot4451": {
+        "language": "en",
+        "accent": "com.au",
+        "pitch": 0.1
+    },
+    "streamelements": {
+        "language": "es",
+        "accent": "es",
+        "pitch": 0.41,
+        "ignored": true
+    },
+    "nightbot": {
+        "language": "es",
+        "accent": "es",
+        "pitch": 0.85,
+        "ignored": true
+    }
+}
