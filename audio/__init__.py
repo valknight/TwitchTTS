@@ -5,9 +5,15 @@ from twitch.chat import Message
 import random
 from io import BytesIO
 from lookup import lookup
-from animalese import animalese
+from animalese import animalese as render_animalese
 from log import get_logger
 import os
+
+# try to import the animalese option if the user has it set
+try:
+    from config import animalese
+except ImportError:
+    animalese = False
 
 l = get_logger(__name__)
 temp = BytesIO()
@@ -31,9 +37,9 @@ def generate_sound(message: Message) -> AudioSegment:
     l.debug('parsing sentence {}'.format(message.text))
     message_text = parse_sentence(message.text)
     l.info("[chat] {}: {}".format(message.sender, message.text))
-    if (data.get('animalese')):
+    if (data.get('animalese', animalese)):
         l.debug('sending sentence to animalese, and returning')
-        return animalese(message_text, data.get('pitch'))
+        return render_animalese(message_text, data.get('pitch'))
     l.debug('sending data to google TTS')
     # generate the message
     tts = gTTS(message_text, lang=data.get(
