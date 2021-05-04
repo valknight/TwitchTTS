@@ -4,3 +4,4 @@ config.py
 lookup/people.json
 *.pyc
 .DS_STORE
+.vscode/
