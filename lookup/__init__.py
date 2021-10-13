@@ -3,6 +3,7 @@ from twitch.chat import Message
 import random
 import sys
 from log import get_logger
+import os
 
 l = get_logger(__name__)
 
@@ -17,6 +18,10 @@ accents = [{'language': 'en', 'accent': 'com'},
 
 
 def read_from_file(key):
+    if not os.path.isfile('lookup/people.json'):
+        with open('lookup/people.json', 'w') as f:
+            f.write(json.dumps({}))
+
     l.debug('[read] {}'.format(key))
     with open('lookup/people.json', 'r') as f:
         data = json.loads(f.read())
