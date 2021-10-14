@@ -1,20 +1,15 @@
 import json
-from twitch.chat import Message
 import random
 import sys
-from log import get_logger
 import os
 
-l = get_logger(__name__)
+from twitch.chat import Message
 
-accents = [{'language': 'en', 'accent': 'com'},
-           {'language': 'en', 'accent': 'com.au'},
-           {'language': 'en', 'accent': 'co.uk'},
-           {'language': 'en', 'accent': 'co.za'},
-           {'language': 'en', 'accent': 'ca'},
-           {'language': 'fr', 'accent': 'fr'},
-           {'language': 'fr', 'accent': 'ca'},
-           {'language': 'es', 'accent': 'es'}]
+from log import get_logger
+from config import accents
+
+
+l = get_logger(__name__)
 
 
 def read_from_file(key):
@@ -32,7 +27,7 @@ def read_from_file(key):
             new_data['pitch'] = data.get(key)
             write_to_file(key, new_data)
             return read_from_file(key)
-        return data.get(key)    
+        return data.get(key)
 
 
 def write_to_file(key, value):
@@ -44,7 +39,7 @@ def write_to_file(key, value):
         f.write(json.dumps(existing_data))
 
 
-def lookup(message: Message) -> float:
+def lookup(message: Message):
     existing = read_from_file(message.sender)
     if existing is not None:
         return existing
